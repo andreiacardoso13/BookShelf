@@ -10,10 +10,10 @@ export const Colors = {
   light: {
     text: '#804000', //Cor texto modo claro
     background: '#F5DEB3', //cor fundo ecrã modo claro
-    tint: tintColorLight,
-    icon: '#687076',
-    tabIconDefault: '#687076',
-    tabIconSelected: tintColorLight,
+    tint: tintColorLight, //cor do icone selecionado
+    icon: '#687076', //cor setas de seleção na pagina search
+    tabIconDefault: '#FF0000', //NAO SEI AINDA
+    tabIconSelected: tintColorLight, //NAO SEI AINDA
   },
   dark: {
     text: '#ECEDEE',
