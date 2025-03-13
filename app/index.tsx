@@ -1,14 +1,17 @@
 import { useState } from "react";
 import { Text, View, Button, StyleSheet } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { StatusBar } from "react-native";
 
 export default function Index() {
   const [darkMode, setDarkMode] = useState(false);
 
   return (
     
-    <View style={[generalStyle.container, darkMode ? generalStyle.dark : generalStyle.light]}>
-      <View>
-        <Text style = {[styleTitle.container, styleTitle.text, darkMode ? styleTitle.textDark: styleTitle. textLight]}>
+    <SafeAreaView style={[generalStyle.container, darkMode ? generalStyle.dark : generalStyle.light]}>
+      <StatusBar translucent backgroundColor={darkMode ? generalStyle.dark.backgroundColor : generalStyle.light.backgroundColor} barStyle={darkMode ? "light-content" : "dark-content"} /> 
+      <View style = {[styleTitle.container]}>
+        <Text style = {[styleTitle.text, darkMode ? styleTitle.textDark: styleTitle. textLight]}>
           My Bookshelf 📚
         </Text>
       </View>
@@ -31,7 +34,7 @@ export default function Index() {
 
 
 
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -39,7 +42,6 @@ export default function Index() {
 const generalStyle = StyleSheet.create({
   container: {
     flex: 1,
-
   },
   light: {
     backgroundColor: "#F5DEB3", // Fundo claro
@@ -54,13 +56,13 @@ const generalStyle = StyleSheet.create({
 
 const styleTitle = StyleSheet.create({
   container: {
-    justifyContent: "flex-start", //flex-start" | "flex-end" | "center" | "space-between" | "space-around" | "space-evenly" | undefined (altura)
-    alignItems: "flex-start", //"flex-start""flex-end""center""stretch""baseline"
+    justifyContent: "center", //flex-start" | "flex-end" | "center" | "space-between" | "space-around" | "space-evenly" | undefined (altura)
+    alignItems: "center", //"flex-start""flex-end""center""stretch""baseline"
   },
   text: {
     fontSize: 30, // Tamanho da fonte
     fontWeight: "bold", // normal, bold, 100,200,300,...
-    fontFamily: "Arial", // Tipo de fonte (Nem todas funcionam no Android)
+    fontFamily: "serif", // Tipo de fonte (Nem todas funcionam no Android)
     marginBottom: 20, // Espaço entre o texto e o botão
   },
   textLight: {
@@ -69,18 +71,24 @@ const styleTitle = StyleSheet.create({
   textDark: {
     color: "#fff", // Cor do texto no modo escuro
   },
+  light: {
+    backgroundColor: "#F5DEB3", // Fundo claro
+  },
+  dark: {
+    backgroundColor: "#222", // Fundo escuro
+  },
 });
 
 
 const styleText = StyleSheet.create({
   container: {
-    justifyContent: "flex-start", //flex-start" | "flex-end" | "center" | "space-between" | "space-around" | "space-evenly" | undefined (altura)
-    alignItems: "flex-start", //"flex-start""flex-end""center""stretch""baseline"
+    justifyContent: "center", //flex-start" | "flex-end" | "center" | "space-between" | "space-around" | "space-evenly" | undefined (altura)
+    alignItems: "center", //"flex-start""flex-end""center""stretch""baseline"
   },
   text: {
     fontSize: 20  , // Tamanho da fonte
     fontWeight: "normal", // Negrito
-    fontFamily: "Arial", // Tipo de fonte (Nem todas funcionam no Android)
+    fontFamily: "serif", // Tipo de fonte (Nem todas funcionam no Android)
     marginBottom: 20, // Espaço entre o texto e o botão
   },
   textLight: {
