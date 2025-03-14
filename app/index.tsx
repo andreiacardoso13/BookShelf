@@ -1,42 +1,33 @@
-import { useState } from "react";
-import { Text, View, Button, StyleSheet } from "react-native";
+import { Text, View, Button, StyleSheet, useColorScheme } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "react-native";
 
 export default function Index() {
-  const [darkMode, setDarkMode] = useState(false);
+  const theme = useColorScheme(); // Obtém o tema do sistema automaticamente
 
   return (
-    
-    <SafeAreaView style={[generalStyle.container, darkMode ? generalStyle.dark : generalStyle.light]}>
-      <StatusBar translucent backgroundColor={darkMode ? generalStyle.dark.backgroundColor : generalStyle.light.backgroundColor} barStyle={darkMode ? "light-content" : "dark-content"} /> 
-      <View style = {[styleTitle.container]}>
-        <Text style = {[styleTitle.text, darkMode ? styleTitle.textDark: styleTitle. textLight]}>
+    <SafeAreaView style={[generalStyle.container, theme === "dark" ? generalStyle.dark : generalStyle.light]}>
+      <StatusBar 
+        translucent 
+        backgroundColor={theme === "dark" ? generalStyle.dark.backgroundColor : generalStyle.light.backgroundColor} 
+        barStyle={theme === "dark" ? "light-content" : "dark-content"} 
+      /> 
+
+      <View style={styleTitle.container}>
+        <Text style={[styleTitle.text, theme === "dark" ? styleTitle.textDark : styleTitle.textLight]}>
           My Bookshelf 📚
         </Text>
       </View>
+
       <View>
-        <Text style = {[styleText.container, styleText.text, darkMode ? styleText.textDark: styleText. textLight]}>
-          Isto é um exemplo de texto
+        <Text style={[styleText.container, styleText.text, theme === "dark" ? styleText.textDark : styleText.textLight]}>
+          Bem vindo à minha aplicação, ieiii
         </Text>
       </View>
-
-
-
-
-      <View style = {{justifyContent: "flex-end", alignItems: "center"}}>
-        <Button 
-         title="Alternar Tema"
-         onPress={() => setDarkMode(!darkMode)}
-         color={darkMode ? "#bbb" : "#000"}
-         />
-      </View>
-
-
-
     </SafeAreaView>
   );
 }
+
 
 
 const generalStyle = StyleSheet.create({
