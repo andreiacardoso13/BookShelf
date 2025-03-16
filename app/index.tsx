@@ -1,8 +1,8 @@
 import { Text, View, Image, StyleSheet, useColorScheme, FlatList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "react-native";
-import vbsa from "@/images/vbsa.jpeg";
-import maridos from "@/images/7Maridos.jpeg";
+import { livros} from "@/app/images";
+
 
 export default function Index() {
   const theme = useColorScheme(); // Obtém o tema do sistema automaticamente
@@ -123,8 +123,4 @@ const styleImages = StyleSheet.create({
   },
 });
 
-// Lista de livros
-const livros = [
-  { nome: "VBSA", imagem: vbsa }, 
-  { nome: "Maridos", imagem: maridos },
-];
+
