@@ -1,4 +1,4 @@
-import { Text, View, Image, Button, StyleSheet, useColorScheme } from "react-native";
+import { Text, View, Image, StyleSheet, useColorScheme, FlatList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "react-native";
 import vbsa from "@/images/vbsa.jpeg";
@@ -22,104 +22,67 @@ export default function Index() {
         </Text>
       </View>
 
-
       <View>
         <Text style={[styleText.container, styleText.text, theme === "dark" ? styleText.textDark : styleText.textLight]}>
-          Bem vindo à minha aplicação, ieiii
+          Bem-vindo à minha aplicação, ieiii
         </Text>
       </View>
 
-
-
-      <View style={styleImages.container}>
-      {livros.map((item, index) => (
-        <View key={index} style={styleImages.container}>
-          <Image source={item.imagem} style={styleImages.container} />
-          <Text style={[styleImages.container, styleImages.text, theme === "dark" ? styleImages.textDark : styleImages.textLight]}>{item.nome}</Text>
-        </View>
-      ))}
-    </View>
-
-
-
-  );
+      <FlatList
+        data={livros}
+        keyExtractor={(item, index) => index.toString()}
+        renderItem={({ item }) => (
+          <View style={styleImages.itemContainer}>
+            <Image source={item.imagem} style={styleImages.image} />
+            <Text style={[styleImages.text, theme === "dark" ? styleImages.textDark : styleImages.textLight]}>
+              {item.nome}
+            </Text>
+          </View>
+        )}
+      />
+      
     </SafeAreaView>
   );
 }
 
-
-
+// Estilos gerais
 const generalStyle = StyleSheet.create({
   container: {
     flex: 1,
   },
   light: {
-    backgroundColor: "#F5DEB3", // Fundo claro
+    backgroundColor: "#F5DEB3",
   },
   dark: {
-    backgroundColor: "#222", // Fundo escuro
+    backgroundColor: "#222",
   },
-})
+});
 
-
-
-
+// Estilos do título
 const styleTitle = StyleSheet.create({
   container: {
-    justifyContent: "center", //flex-start" | "flex-end" | "center" | "space-between" | "space-around" | "space-evenly" | undefined (altura)
-    alignItems: "center", //"flex-start""flex-end""center""stretch""baseline"
-  },
-  text: {
-    fontSize: 30, // Tamanho da fonte
-    fontWeight: "bold", // normal, bold, 100,200,300,...
-    fontFamily: "serif", // Tipo de fonte (Nem todas funcionam no Android)
-    marginBottom: 20, // Espaço entre o texto e o botão
-  },
-  textLight: {
-    color: "#804000", // Cor do texto no modo claro
-  },
-  textDark: {
-    color: "#fff", // Cor do texto no modo escuro
-  },
-  light: {
-    backgroundColor: "#F5DEB3", // Fundo claro
-  },
-  dark: {
-    backgroundColor: "#222", // Fundo escuro
-  },
-});
-
-
-const styleText = StyleSheet.create({
-  container: {
-    justifyContent: "center", //flex-start" | "flex-end" | "center" | "space-between" | "space-around" | "space-evenly" | undefined (altura)
-    alignItems: "center", //"flex-start""flex-end""center""stretch""baseline"
-  },
-  text: {
-    fontSize: 20  , // Tamanho da fonte
-    fontWeight: "normal", // Negrito
-    fontFamily: "serif", // Tipo de fonte (Nem todas funcionam no Android)
-    marginBottom: 20, // Espaço entre o texto e o botão
-  },
-  textLight: {
-    color: "#804000", // Cor do texto no modo claro
-  },
-  textDark: {
-    color: "#fff", // Cor do texto no modo escuro
-  },
-});
-
-
-const styleImages = StyleSheet.create({
-  container:{
     justifyContent: "center",
     alignItems: "center",
-    width: 200,
-    height: 200,
-    flex: 1,
   },
-  image: {  
-    resizeMode: "contain", // Evita cortes na imagem
+  text: {
+    fontSize: 30,
+    fontWeight: "bold",
+    fontFamily: "serif",
+    marginBottom: 20,
+  },
+  textLight: {
+    color: "#804000",
+  },
+  textDark: {
+    color: "#fff",
+  },
+});
+
+// Estilos do texto
+const styleText = StyleSheet.create({
+  container: {
+    justifyContent: "center",
+    alignItems: "center",
   },
   text: {
     fontSize: 20,
@@ -128,15 +91,40 @@ const styleImages = StyleSheet.create({
     marginBottom: 20,
   },
   textLight: {
-    color: "#804000", // Cor do texto no modo claro
+    color: "#804000",
   },
   textDark: {
-    color: "#fff", // Cor do texto no modo escuro
+    color: "#fff",
   },
 });
 
+// Estilos das imagens
+const styleImages = StyleSheet.create({
+  itemContainer: {
+    width: "100%", // Ocupa a largura total da tela
+    alignItems: "center",
+    marginBottom: 20, // Espaçamento entre os livros
+  },
+  image: {
+    width: "80%", // Ajusta a imagem para ser responsiva
+    height: 350, // Altura fixa para todas as imagens
+    resizeMode: "contain", // Mantém a proporção sem cortes
+  },
+  text: {
+    fontSize: 20,
+    fontWeight: "bold",
+    marginTop: 5,
+  },
+  textLight: {
+    color: "#804000",
+  },
+  textDark: {
+    color: "#fff",
+  },
+});
 
+// Lista de livros
 const livros = [
   { nome: "VBSA", imagem: vbsa }, 
-  { nome: "maridos", imagem: maridos},
+  { nome: "Maridos", imagem: maridos },
 ];
