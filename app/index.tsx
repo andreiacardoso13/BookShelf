@@ -2,6 +2,7 @@ import { Text, View, Image, StyleSheet, useColorScheme, FlatList } from "react-n
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "react-native";
 import { livros} from "@/app/images";
+import  Footer from "@/app/components/footer"
 
 
 export default function Index() {
@@ -24,7 +25,7 @@ export default function Index() {
 
       <View>
         <Text style={[styleText.container, styleText.text, theme === "dark" ? styleText.textDark : styleText.textLight]}>
-          Bem-vindo à minha aplicação, ieiii
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </Text>
       </View>
 
@@ -40,7 +41,12 @@ export default function Index() {
           </View>
         )}
       />
-      
+
+      <View> 
+        <Footer/>
+      </View>
+    
+
     </SafeAreaView>
   );
 }
@@ -51,7 +57,7 @@ const generalStyle = StyleSheet.create({
     flex: 1,
   },
   light: {
-    backgroundColor: "#F5DEB3",
+    backgroundColor: "#f2d59d",
   },
   dark: {
     backgroundColor: "#222",
